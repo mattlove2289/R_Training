@@ -582,7 +582,7 @@ git commit -m "Resolved merge conflict in <file_name>"
 ## Git Commands
 
 ### Basic Commands
-- **Initialize a Git repository**
+- **Initialise a Git repository**
   ```sh
   git init
   ```
