@@ -265,6 +265,50 @@ grouped_data <- joined_data %>%
 print(grouped_data)
 ```
 
+#### Functions
+### Creating Functions in R
+
+In R, functions are a fundamental way to create reusable pieces of code. Functions allow you to encapsulate code into a single unit that can be executed whenever needed, with different inputs.
+
+#### Creating and Using Functions
+
+- **Function Syntax:**
+  - Functions in R are created using the `function` keyword.
+  - A function can take one or more arguments and perform a series of operations on them.
+  - The result of a function is returned using the `return()` function or by simply placing the result as the last line of the function.
+
+**Example:**
+```r
+# Define a simple function to add two numbers
+add_numbers <- function(a, b) {
+  result <- a + b
+  return(result)
+}
+
+# Call the function with arguments
+sum <- add_numbers(3, 5)
+print(sum) # Output: 8
+```
+
+
+**Functions with Default Arguments**
+You can also define default values for function arguments. This is useful when you want to allow the function to be called with fewer arguments, using default values for some of them.
+**Example**
+```r
+# Define a function with default arguments
+greet <- function(name = "Guest") {
+  message <- paste("Hello,", name)
+  return(message)
+}
+
+# Call the function with and without an argument
+greeting1 <- greet("Chris")
+print(greeting1) # Output: "Hello, Alice"
+
+greeting2 <- greet()
+print(greeting2) # Output: "Hello, Guest"
+```
+
 ### Using Help and Documentation in R
 
 In R, accessing help and documentation is crucial for understanding functions, packages, and other aspects of the language. Here are some key ways to access help and documentation in R:
@@ -322,8 +366,8 @@ In R, accessing help and documentation is crucial for understanding functions, p
 3. **Stack Overflow:**
    - [Stack Overflow](https://stackoverflow.com/questions/tagged/r) is a popular Q&A website where you can find answers to R-related questions or ask your own.
 
-4. **R Bloggers:**
-   - [R Bloggers](https://www.r-bloggers.com/) is a blog aggregator that features tutorials and articles on R programming.
+4. **Posit Resources:**
+   - [Postit](https://posit.co/resources/) Posit provides a wide range of resources including blogs, videos, and cheatsheets to help you grow your data science skills.
 
 #### Example: Finding Help for `ggplot2`
 
@@ -334,4 +378,104 @@ library(ggplot2)
 
 # Searching for vignettes related to ggplot2
 vignette("ggplot2-specs")
+```
+# Training Session Exercise: Mapping Locations to SA2 Regions
 
+In this exercise, we'll map locations from a data frame to SA2 regions using R. We'll break down the process into clear, manageable steps. By the end of this exercise, you'll be able to:
+
+1. Load required libraries
+2. Define a function to map locations
+3. Create sample data frames
+4. Use the function to map locations
+5. Combine the mapped data
+6. Update data in a data frame
+
+## Part 1: Load Required Libraries
+
+First, we need to load the necessary libraries.
+
+```r
+library(sf)
+library(dplyr)
+library(janitor)
+```
+## Part 2: Define a Function to Map Locations to SA2 Regions
+Next, we'll define a function geomap_data that takes a data frame of locations and a path to a shapefile. The function will perform a spatial join to map the locations to SA2 regions.
+```r
+geomap_data <- function(location_df, shapefile_path) {
+  # Read the shapefile
+  shape_data <- st_read(shapefile_path)
+  
+  # Ensure the location data frame has the same CRS as the shapefile
+  location_sf <- st_as_sf(location_df, coords = c("Longitude", "Latitude"), crs = st_crs(shape_data))
+  
+  # Perform a spatial join to find which SA2 region each location is in
+  joined_data <- st_join(location_sf, shape_data, join = st_intersects)
+  
+  # Select relevant columns
+  result <- joined_data %>% 
+    select(Name, SA2_NAME21) %>% 
+    clean_names()
+  
+  # Identify unmappable locations
+  unmappable_locations <- result %>% 
+    filter(is.na(sa2_name21))
+  
+  # Print unmappable locations
+  if (nrow(unmappable_locations) > 0) {
+    message("Unmappable locations: ")
+    print(unmappable_locations)
+  } else {
+    message("All locations were successfully mapped.")
+  }
+  
+  return(result)
+}
+```
+## Part 3: Create Sample Data Frames
+We'll create sample data frames for locations in Sydney and Brisbane.
+```r
+# Create a sample data frame with locations in Sydney
+sydney_locations <- data.frame(
+  Name = c("Sydney Opera House", "Bondi Beach"),
+  Longitude = c(151.215256, 151.209296),
+  Latitude = c(-33.856784, -33.852306)
+)
+
+# Create a sample data frame with locations in Brisbane
+brisbane_locations <- data.frame(
+  Name = c("South Bank Parklands", "Story Bridge"),
+  Longitude = c(153.023511, 153.028095),
+  Latitude = c(-27.481078, -27.467917)
+)
+```
+## Part 4: Use the Function to Map Locations
+Define the path to the shapefile and call the function with the sample data frames.
+```r
+# Define the path to the shapefile
+shapefile <- "~/R Scripts/SA2_2021/SA2_2021_AUST_GDA2020.shp"
+
+# Call the function with Sydney locations
+sydney_locations_mapped <- geomap_data(sydney_locations, shapefile) %>% 
+  st_drop_geometry()
+
+# Call the function with Brisbane locations
+brisbane_locations_mapped <- geomap_data(brisbane_locations, shapefile) %>% 
+  st_drop_geometry()
+```
+## Part 5: Combine the Mapped Data
+Combine the mapped data frames into one.
+```r
+# Combine the data
+combined_data <- rbind(brisbane_locations_mapped, sydney_locations_mapped)
+```
+## Part 6: Update Data in a Data Frame
+Finally, we'll update the latitude and longitude for Bondi Beach in the Sydney data frame.
+```r
+# Update the latitude and longitude for Bondi Beach
+sydney_locations <- sydney_locations %>% 
+  mutate(
+    Longitude = ifelse(Name == "Bondi Beach", 151.2744092, Longitude),
+    Latitude = ifelse(Name == "Bondi Beach", -33.8904123, Latitude)
+  )
+```
