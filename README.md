@@ -159,6 +159,7 @@ The `dplyr` package in R is a powerful tool for data manipulation. It provides a
   - `summarise()`: Summarise data.
   - `group_by()`: Group data by one or more variables.
   - `left_join()`: Merge two data frames based on a common column, keeping all rows from the left data frame.
+  - `rename()`: Rename columns in a data frame.
 
 #### Examples
 
@@ -175,14 +176,94 @@ print(data)
 ```
 **Selecting Columns:**
 ```r
+# Select the 'Name' and 'Age' columns
 selected_data <- select(data, Name, Age)
 print(selected_data)
 ```
-**Piping**
+**Piping:**
 
 The pipe operator `%>%` from the `magrittr` package (which is loaded with `dplyr`) allows you to chain multiple operations together in a readable and concise way. The ReSPOND dashboard commonly uses the pipe operator. Using the example above, we can use it as follows:
 ```r
+# Select the 'Name' and 'Age' columns
 selected_data_pipe <- data %>%
-select(Name, Age)
+  select(Name, Age)
 print(selected_data_pipe)
 ```
+**Note:** The pipe operator can be entered into R by using `Ctrl` + `Alt` + `M`.
+
+**Filtering data:**
+```r
+# Filter rows where Age is greater than 22
+filtered_data <- data %>%
+  filter(Age > 22)
+print(filtered_data)
+```
+
+**Arranging Rows:**
+```r
+# Arrange rows by Age in ascending order
+arranged_data <- data %>% 
+  arrange(Age)
+print(arranged_data)
+
+# Arrange rows by Age in descending order
+arranged_data_desc <- data %>% 
+  arrange(desc(Age))
+print(arranged_data_desc)
+```
+
+**Mutating Columns:**
+```r
+# Add a new column 'Age_in_5_years' by mutating the 'Age' column
+ mutated_data <- data %>% 
+    mutate(Age_in_5_years = Age + 5)
+ print(mutated_data)
+ ```
+
+**Summarising Data:**
+```r
+# Summarise the data to calculate the average age
+  summary_data <- data %>% 
+    summarise(avg_age = mean(Age))
+print(summary_data)
+```
+**Left Join:**
+```r
+# Create another sample data frame to join with
+data2 <- data.frame(
+  Name = c("Chris", "Maggie", "Van", "Amanda"),
+  Department = c("Data", "Systems", "Data", "Systems")
+)
+print(data2)
+
+# Perform a left join on the 'Name' column
+joined_data <- left_join(data, data2, by = "Name")
+print(joined_data)
+```
+
+**Rename Columns:**
+```r
+# Rename the Name column to staff_name
+data2 <- data2 %>% 
+  rename(staff_name = Name)
+```
+**Left Join:**
+In this example we will perform the 'left_join' on two columns on two different column names
+```r
+joined_data <- data %>% 
+  left_join(data2, by = c("Name" = "staff_name"))
+  print(joined_data)
+```
+You will also notice in the previous join example, a pipe operator was not used.
+
+**Grouping Data:**
+```r
+# Group data by 'Department' and then summarise to calculate the average age for each group.
+grouped_data <- joined_data %>%  
+  group_by(Department) %>% 
+  summarise(avg_age = mean(Age))
+print(grouped_data)
+```
+
+- `left_join()`: Merge two data frames based on a common column, keeping all rows from the left data frame.
+
