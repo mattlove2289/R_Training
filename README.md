@@ -479,3 +479,98 @@ sydney_locations <- sydney_locations %>%
     Latitude = ifelse(Name == "Bondi Beach", -33.8904123, Latitude)
   )
 ```
+# Training Session Exercise: Using Git for Version Control
+
+In this exercise, we'll practice using Git for version control. We'll break down the process into clear, manageable steps. By the end of this exercise, you'll be able to:
+
+1. Initialize a Git repository
+2. Clone a repository
+3. Create and switch branches
+4. Make changes and commit them
+5. Push changes to a remote repository
+6. Pull changes from a remote repository
+7. Resolve merge conflicts
+
+## Part 1: Initialize a Git Repository
+
+First, we'll initialize a new Git repository.
+
+```sh
+# Create a new directory for your project
+mkdir my_project
+cd my_project
+
+# Initialize a new Git repository
+git init
+```
+
+## Part 2: Clone a Repository
+
+Next, we'll clone an existing repository from a remote source.
+
+```sh
+# Clone a repository (replace <repository_url> with the actual URL)
+git clone <repository_url>
+```
+
+## Part 3: Create and Switch Branches
+
+We'll create a new branch and switch to it.
+
+```sh
+# Create a new branch named "feature_branch"
+git branch feature_branch
+
+# Switch to the new branch
+git checkout feature_branch
+
+# Alternatively, create and switch to a new branch in one command
+git checkout -b feature_branch
+```
+
+## Part 4: Make Changes and Commit Them
+
+Make some changes to your files, then stage and commit those changes.
+
+```sh
+# Stage your changes (replace <file_name> with the actual file name)
+git add <file_name>
+
+# Commit your changes with a message
+git commit -m "Describe your changes here"
+```
+
+## Part 5: Push Changes to a Remote Repository
+
+Push your changes to the remote repository.
+
+```sh
+# Push your changes to the remote repository (replace <branch_name> with the actual branch name)
+git push origin <branch_name>
+```
+
+## Part 6: Pull Changes from a Remote Repository
+
+Pull the latest changes from the remote repository.
+
+```sh
+# Pull changes from the remote repository
+git pull origin <branch_name>
+```
+
+## Part 7: Resolve Merge Conflicts
+
+If there are merge conflicts, resolve them and commit the changes.
+
+```sh
+# Check the status to see which files have conflicts
+git status
+
+# Edit the conflicted files to resolve conflicts
+
+# Stage the resolved files
+git add <file_name>
+
+# Commit the resolution
+git commit -m "Resolved merge conflict in <file_name>"
+```
