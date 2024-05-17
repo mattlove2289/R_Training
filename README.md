@@ -50,7 +50,7 @@ Understand the basics of R programming, learn how to work with different data st
   - Variable names should be descriptive and cannot start with a number.
   - Use `=` for assignment, but `<-` is the preferred operator in R.
 
-**Note:** The pipe operator can be entered into R by using `Ctrl` `+` or `-`.
+**Note:** The assignment operator can be entered into R by using `Ctrl` `+` or `-`.
 
 #### Data Types
 - **Numeric:**
