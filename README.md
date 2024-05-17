@@ -177,11 +177,6 @@ print(data)
 ```r
 selected_data <- select(data, Name, Age)
 print(selected_data)
-
-## We can also use a pipe operator which is commonly used in ReSPOND
-selected_data_pipe <- data %>%
-select(Name, Age)
-print(selected_data_pipe)
 ```
 **Piping**
 
