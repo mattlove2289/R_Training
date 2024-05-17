@@ -367,7 +367,7 @@ In R, accessing help and documentation is crucial for understanding functions, p
    - [Stack Overflow](https://stackoverflow.com/questions/tagged/r) is a popular Q&A website where you can find answers to R-related questions or ask your own.
 
 4. **Posit Resources:**
-   - [Postit](https://posit.co/resources/) Posit provides a wide range of resources including blogs, videos, and cheatsheets to help you grow your data science skills.
+   - [Postit](https://posit.co/resources/) provides a wide range of resources including blogs, videos, and cheatsheets to help you grow your data science skills.
 
 #### Example: Finding Help for `ggplot2`
 
