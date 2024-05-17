@@ -574,3 +574,153 @@ git add <file_name>
 # Commit the resolution
 git commit -m "Resolved merge conflict in <file_name>"
 ```
+
+# Quick and Easy Cheat Sheet: Git and R
+
+## Git Commands
+
+### Basic Commands
+- **Initialize a Git repository**
+  ```sh
+  git init
+  ```
+
+- **Clone a repository**
+  ```sh
+  git clone <repository_url>
+  ```
+
+### Branching
+- **Create a new branch**
+  ```sh
+  git branch <branch_name>
+  ```
+
+- **Switch to a branch**
+  ```sh
+  git checkout <branch_name>
+  ```
+
+- **Create and switch to a new branch**
+  ```sh
+  git checkout -b <branch_name>
+  ```
+
+### Staging and Committing
+- **Stage changes**
+  ```sh
+  git add <file_name>
+  ```
+
+- **Commit changes**
+  ```sh
+  git commit -m "commit message"
+  ```
+
+- **Stage and commit all changes**
+  ```sh
+  git commit -am "commit message"
+  ```
+
+### Pushing and Pulling
+- **Push changes to the remote repository**
+  ```sh
+  git push origin <branch_name>
+  ```
+
+- **Pull changes from the remote repository**
+  ```sh
+  git pull origin <branch_name>
+  ```
+
+### Merging
+- **Merge a branch into the current branch**
+  ```sh
+  git merge <branch_name>
+  ```
+
+### Checking Status and Log
+- **Check the status of the repository**
+  ```sh
+  git status
+  ```
+
+- **View commit history**
+  ```sh
+  git log
+  ```
+
+## R Commands
+
+### Basic Commands
+
+- **Install a package**
+  ```r
+  install.packages("package_name")
+  ```
+
+- **Load a library**
+  ```r
+  library(package_name)
+  ```
+
+- **View column names of a data frame**
+  ```r
+  colnames(data_frame)
+  ```
+
+- **View the first few rows of a data frame**
+  ```r
+  head(data_frame)
+  ```
+
+- **Summarise a data frame**
+  ```r
+  summary(data_frame)
+  ```
+
+### Data Manipulation
+- **Select columns**
+  ```r
+  data_frame <- data_frame %>% select(column1, column2)
+  ```
+
+- **Filter rows**
+  ```r
+  data_frame <- data_frame %>% filter(condition)
+  ```
+
+- **Mutate (add or modify columns)**
+  ```r
+  data_frame <- data_frame %>% mutate(new_column = expression)
+  ```
+
+- **Arrange rows**
+  ```r
+  data_frame <- data_frame %>% arrange(column)
+  ```
+
+### Working with Factors
+- **Convert a column to a factor**
+  ```r
+  data_frame$column <- as.factor(data_frame$column)
+  ```
+
+### Functions
+- **Define a function**
+  ```r
+  my_function <- function(arg1, arg2) {
+    # function body
+  }
+  ```
+
+### Data Import
+- **Read a CSV file**
+  ```r
+  data_frame <- read.csv("file_path.csv")
+  ```
+### Data Export
+- **Write a CSV file**
+  ```r
+  write.csv("file_path.csv")
+  ```
