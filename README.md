@@ -50,6 +50,8 @@ Understand the basics of R programming, learn how to work with different data st
   - Variable names should be descriptive and cannot start with a number.
   - Use `=` for assignment, but `<-` is the preferred operator in R.
 
+**Note:** The pipe operator can be entered into R by using `Ctrl` `+` or `-`.
+
 #### Data Types
 - **Numeric:**
   - Numeric data types are used for numbers. They can be integers or floating-point numbers.
@@ -189,7 +191,7 @@ selected_data_pipe <- data %>%
   select(Name, Age)
 print(selected_data_pipe)
 ```
-**Note:** The pipe operator can be entered into R by using `Ctrl` + `Alt` + `M`.
+**Note:** The pipe operator can be entered into R by using `Ctrl` `Shift` `M`.
 
 **Filtering data:**
 ```r
