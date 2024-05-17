@@ -722,5 +722,5 @@ git commit -m "Resolved merge conflict in <file_name>"
 ### Data Export
 - **Write a CSV file**
   ```r
-  write.csv("file_path.csv")
+  write.csv(dataset, "file_path.csv")
   ```
