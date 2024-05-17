@@ -485,7 +485,7 @@ sydney_locations <- sydney_locations %>%
 
 In this exercise, we'll practice using Git for version control. We'll break down the process into clear, manageable steps. By the end of this exercise, you'll be able to:
 
-1. Initialize a Git repository
+1. Initialise a Git repository
 2. Clone a repository
 3. Create and switch branches
 4. Make changes and commit them
@@ -493,16 +493,16 @@ In this exercise, we'll practice using Git for version control. We'll break down
 6. Pull changes from a remote repository
 7. Resolve merge conflicts
 
-## Part 1: Initialize a Git Repository
+## Part 1: Initialise a Git Repository
 
-First, we'll initialize a new Git repository.
+First, we'll initialise a new Git repository.
 
 ```sh
 # Create a new directory for your project
 mkdir my_project
 cd my_project
 
-# Initialize a new Git repository
+# Initialise a new Git repository
 git init
 ```
 
