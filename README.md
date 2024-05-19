@@ -483,7 +483,7 @@ sydney_locations <- sydney_locations %>%
 ```
 # Training Session Exercise: Using Git for Version Control
 
-In this exercise, we'll practice using Git for version control. We'll break down the process into clear, manageable steps. By the end of this exercise, you'll be able to:
+In this exercise, we'll practise using Git for version control. By the end of this exercise, you'll be able to:
 
 1. Initialise a Git repository
 2. Clone a repository
@@ -537,6 +537,9 @@ Make some changes to your files, then stage and commit those changes.
 ```sh
 # Stage your changes (replace <file_name> with the actual file name)
 git add <file_name>
+
+# Stage all changes
+git add .
 
 # Commit your changes with a message
 git commit -m "Describe your changes here"
@@ -612,10 +615,11 @@ git commit -m "Resolved merge conflict in <file_name>"
 - **Stage changes**
   ```sh
   git add <file_name>
-  
-  #You can also add all files that have been changed by:
-  
-  git add . or git add -A
+  ```
+
+- **Stage all changes**
+  ```sh
+  git add .
   ```
 
 - **Commit changes**
@@ -655,6 +659,13 @@ git commit -m "Resolved merge conflict in <file_name>"
   ```sh
   git log
   ```
+
+### Additional Tips for Merging Conflicts
+
+- **Avoiding Conflicts:** Try to communicate with your team and ensure everyone knows who is working on what parts of the code.
+- **Regular Pulls:** Regularly pull changes from the remote repository to minimise the number and complexity of conflicts.
+- **Conflict Markers:** In a conflict, Git uses markers like `<<<<<<<`, `=======`, and `>>>>>>>` to indicate conflicting changes. Ensure you remove these markers after resolving the conflict.
+
 
 ## R Commands
 
