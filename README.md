@@ -612,6 +612,10 @@ git commit -m "Resolved merge conflict in <file_name>"
 - **Stage changes**
   ```sh
   git add <file_name>
+  
+  #You can also add all files that have been changed by:
+  
+  git add . or git add -A
   ```
 
 - **Commit changes**
